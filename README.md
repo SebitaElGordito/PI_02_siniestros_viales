@@ -1,20 +1,17 @@
-![FastAPI](https://img.shields.io/badge/-FastAPI-333333?style=flat&logo=fastapi)
-![Docker](https://img.shields.io/badge/-Docker-333333?style=flat&logo=docker)
-![Render](https://img.shields.io/badge/-Render-333333?style=flat&logo=render)
 ![Pandas](https://img.shields.io/badge/-Pandas-333333?style=flat&logo=pandas)
 ![Numpy](https://img.shields.io/badge/-Numpy-333333?style=flat&logo=numpy)
 ![Matplotlib](https://img.shields.io/badge/-Matplotlib-333333?style=flat&logo=matplotlib)
 ![Seaborn](https://img.shields.io/badge/-Seaborn-333333?style=flat&logo=seaborn)
-![Scikit-learn](https://img.shields.io/badge/-Scikitlearn-333333?style=flat&logo=scikitlearn)
+
 
 <br>
 
-# :construction: Proyecto Integrador 01 steam :construction:
+# :construction: Proyecto Integrador 02 siniestros viales :construction:
 
 <br>
 
 <p align="center">
-<img src="https://github.com/SebitaElGordito/PI_01_steam/blob/main/Images/steam_banner_trabajo.jpg?raw=true" alt="steam banner" width="900" height="250">
+<img src="https://github.com/SebitaElGordito/PI_02_siniestros_viales/blob/main/Images/imagen dashboard.jpg?raw=true" alt="banner siniestros viales" width="900" height="450">
 
 <br>
 
