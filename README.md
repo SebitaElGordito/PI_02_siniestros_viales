@@ -53,7 +53,7 @@ Se pone a disposición un dataset sobre homicidios en siniestros viales acaecido
 
 Se espera como productos finales un reporte de las tareas realizadas, metodologías adoptadas y principales conclusiones y la presentación de un dashboard interactivo que facilite la interpretación de la información y si análisis.
 
-Actualmente, según el censo poblacional realizado en el año 2022, la población de CABA es de 3,120,612 de habitantes en una superficie de 200 km2, lo que implica una densidad de aproximadamente 15,603 hab/km2 [(Fuente)](https://www.argentina.gob.ar/caba#:~:text=Poblaci%C3%B3n%3A%203.120.612%20habitantes%20(Censo%202022)). Sumado a esto, el Julio de 2023 se registraron 12,437,735 de vehículos transitando por los peajes de las autopistas de acceso a CABA [(Fuente)](https://www.estadisticaciudad.gob.ar/eyc/?p=41995). Por lo que la prevención de siniestros viales y la implementación de políticas efectivas son esenciales para abordar este problema de manera adecuada.
+Actualmente, según el censo poblacional realizado en el año 2022, la población de CABA es de 3,070,612 de habitantes en una superficie de 200 km2, lo que implica una densidad de aproximadamente 15,603 hab/km2 [(Fuente)](https://www.argentina.gob.ar/caba#:~:text=Poblaci%C3%B3n%3A%203.120.612%20habitantes%20(Censo%202022)). Sumado a esto, el Julio de 2023 se registraron 12,437,735 de vehículos transitando por los peajes de las autopistas de acceso a CABA [(Fuente)](https://www.estadisticaciudad.gob.ar/eyc/?p=41995). Por lo que la prevención de siniestros viales y la implementación de políticas efectivas son esenciales para abordar este problema de manera adecuada.
 
 Para este proyecto se trabajó con la **Bases de Víctimas Fatales en Siniestros Viales** que se encuentra en formato de Excel y contiene dos pestañas de datos:
 
@@ -69,7 +69,7 @@ Para la elaboración de este proyecto se utilizó Python y Pandas para los proce
 Finalmente, para la construcción de un dashboard interactivo se utiliza Power BI.
 
 <p align="center">
-<img src="https://github.com/SebitaElGordito/PI_02_siniestros_viales/blob/main/Images/imagen_dashboard.jpeg?raw=true" alt="banner siniestros viales" width="1000" height="450">
+<img src="https://github.com/SebitaElGordito/PI_02_siniestros_viales/blob/main/Images/Dashboard.jpeg?raw=true" alt="banner siniestros viales" width="800" height="400">
 
 <br>
 
