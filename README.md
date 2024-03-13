@@ -21,19 +21,15 @@
 
 * [Datos](#memo-datos)
 
-* [ETL](#etl)
+* [Tecnologías Utilizadas](#tecnologías-utilizadas)
 
-* [Feature engineering](#feature-engineering)
+* [ETL](#etl)
 
 * [EDA](#bar_chart-eda)
 
-* [Modelo de Recomendación](#robot-modelo-de-recomendación)
+* [KPI´s](#kpi)
 
-* [Desarrollo de API](#desarrollo-de-api)
-
-* [Deployment](#deployment)
-
-* [Video](#video)
+* [Conclusión](#conclusion)
 
 <br>
 
@@ -77,7 +73,9 @@ Finalmente, para la construcción de un dashboard interactivo se utiliza Power B
 
 ## ETL
 
-Extracción de Datos
+Link al [ETL](https://github.com/SebitaElGordito/PI_02_siniestros_viales/blob/main/ETL.ipynb)
+
+Extracción de Datos 
 
 En primer lugar, se realizó un proceso de extracción, transformación y carga de los datos (ETL), tanto de "HECHOS" como "VÍCTIMAS", donde se estandarizaron nombres de las variables, se analizaron nulos y duplicados de los registros, se eliminaron columnas redundantes o con muchos valores faltantes, entre otras tareas. Una vez finalizado este proceso para los dos conjuntos de datos de "Homicidios" se procedió a unir los dos conjuntos en uno solo denominado `df_homicidios`.
 
@@ -89,6 +87,8 @@ Los datos transformados y limpios se utilizaron para realizar el EDA pertinente,
 ## :bar_chart: EDA
 
 Se utilizaron herramientas como Python, Pandas y Matplotlib para explorar los datos, generando estadísticas descriptivas, gráficos de tendencias y correlaciones.
+
+Link al [EDA](https://github.com/SebitaElGordito/PI_02_siniestros_viales/blob/main/EDA.ipynb)
 
 Localización y Tiempo de los Siniestros: Se observó una mayor incidencia de siniestros en ciertas comunas y horarios, destacándose las primeras horas de la mañana y las avenidas principales.
 
@@ -146,8 +146,11 @@ Se plantearon tres objetivos en relación a la disminución de la cantidad de v�
 
 <br>
 
-## Conclusiones
-La aplicación de técnicas de ciencia de datos ha permitido identificar áreas clave para mejorar la seguridad vial en Buenos Aires. La integración del proceso ETL y EDA ha demostrado ser fundamental para una comprensión profunda de los siniestros viales. Las conclusiones obtenidas son de gran valor para informar políticas públicas y estrategias orientadas a reducir la incidencia y gravedad de los siniestros viales en la ciudad.
+## Conclusion
+
+La aplicación de técnicas de ciencia de datos ha permitido identificar áreas claves para mejorar la seguridad vial en Buenos Aires. La integración del proceso ETL y EDA ha demostrado ser fundamental para una comprensión profunda de los siniestros viales. Las conclusiones obtenidas son de gran valor para informar políticas públicas y estrategias orientadas a reducir la incidencia y gravedad de los siniestros viales en la ciudad.
+
+Si con éste informe debidamente presentado, lográsemos obtener un aumento de presupuesto para colocar cuadrillas adicionales de agentes en lugares estratégicosa de la ciudad, sin dudas, lograríamos reducir mucho mas los siniestros viales, logrando que mas personas salgan a divertirse, y que tambien regresen a sus hogares.
 
 <br>
 
