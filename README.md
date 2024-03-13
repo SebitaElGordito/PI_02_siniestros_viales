@@ -11,7 +11,7 @@
 <br>
 
 <p align="center">
-<img src="https://github.com/SebitaElGordito/PI_02_siniestros_viales/blob/main/Images/imagen dashboard.png?raw=true" alt="banner siniestros viales" width="900" height="450">
+<img src="https://github.com/SebitaElGordito/PI_02_siniestros_viales/blob/main/Images/imagen dashboard.jpeg?raw=true" alt="banner siniestros viales" width="900" height="450">
 
 <br>
 
