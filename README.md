@@ -39,148 +39,92 @@
 
 ## :hammer: Contexto
 
-Este proyecto es un sistema de recomendación para la plataforma de videojuegos Steam, siguiendo las prácticas de Machine Learning Operations (MLOps). Incluye todas las etapas necesarias para llevar a cabo un proyecto de ciencia de datos: desde la Extracción, Transformación y Carga (ETL) de los datos, hasta el Análisis Exploratorio de Datos (EDA) y la implementación de un modelo de recomendación basado en aprendizaje automático.
+La ciudad de Buenos Aires nos propone como analista de datos, abordar la problemática de los siniestros viales que concluyen con fatalidaddes.
 
-Steam es una de las plataformas más grandes y populares para la distribución de videojuegos. Con millones de usuarios activos y un catálogo extenso, existe una gran oportunidad para desarrollar sistemas de recomendación que mejoren la experiencia del usuario al sugerir juegos de su interés. En este proyecto, aplicamos técnicas de ciencia de datos y aprendizaje automático para crear un modelo que realice estas recomendaciones de manera efectiva.
+La ciudad de Buenos Aires, al igual que muchas capitales a nivel mundial, se encuentra confrontando una importante problemática relacionada con los siniestros viales. Dichos incidentes constituyen una preocupación prioritaria para las autoridades locales, quienes han implementado diversas estrategias con el objetivo de mitigar su incidencia. Entre estas iniciativas, se destaca la recopilación sistemática de datos generados por los siniestros, proporcionando así una oportunidad invaluable para llevar a cabo un análisis exhaustivo y obtener conclusiones significativas.
+
+Argentina ostenta uno de los índices más altos de mortalidad producida por siniestros de tránsito y se calcula que 20 personas mueren por día, casi 7.000 fallecidos por año, y más de 120.000 heridos anuales de distinto grado, de acuerdo a un relevamiento de Luchemos por la Vida.
 
 <br>
 
 ## :memo: Datos
 
-Nuestro cliente nos proporciona 3 datasets:
+Se pone a disposición un dataset sobre homicidios en siniestros viales acaecidos en la Ciudad de Buenos Aires durante el periodo 2016-2021.
 
-* **steam_games.json** es un dataset que contiene datos relacionados con los juegos, como los título, el desarrollador, el publicador, fecha de lanzamiento, los precios, el género al que pertenecen, las etiquetas, etc.
+Se espera como productos finales un reporte de las tareas realizadas, metodologías adoptadas y principales conclusiones y la presentación de un dashboard interactivo que facilite la interpretación de la información y si análisis.
 
-* **australian_user_reviews.json** es un dataset que contiene identificador de juego, si es recomendado o no por el usuario, los comentarios que los usuarios realizaron sobre los juegos que consumen, etc.  
+Actualmente, según el censo poblacional realizado en el año 2022, la población de CABA es de 3,120,612 de habitantes en una superficie de 200 km2, lo que implica una densidad de aproximadamente 15,603 hab/km2 [(Fuente)](https://www.argentina.gob.ar/caba#:~:text=Poblaci%C3%B3n%3A%203.120.612%20habitantes%20(Censo%202022)). Sumado a esto, el Julio de 2023 se registraron 12,437,735 de vehículos transitando por los peajes de las autopistas de acceso a CABA [(Fuente)](https://www.estadisticaciudad.gob.ar/eyc/?p=41995). Por lo que la prevención de siniestros viales y la implementación de políticas efectivas son esenciales para abordar este problema de manera adecuada.
 
-* **australian_users_items.json** es un dataset que contiene información sobre la cantidad de tiempo que dedican los usuarios a los juegos, cantidad de items que tienen los usuarios en sus bibliotecas
+Para este proyecto se trabajó con la **Bases de Víctimas Fatales en Siniestros Viales** que se encuentra en formato de Excel y contiene dos pestañas de datos:
 
+* **HECHOS**: que contiene una fila de hecho con id único y las variables temporales, espaciales y participantes asociadas al mismo.
+* **VICTIMAS**: contiene una fila por cada víctima de los hechos y las variables edad, sexo y modo de desplazamiento asociadas a cada víctima. Se vincula a los HECHOS mediante el id del hecho.
 
-Esta informacion se encuentra detallada en el documento [Diccionario de datos](https://github.com/SebitaElGordito/PI_01_steam/blob/main/Diccionario_de_datos.md).
+<br>
+
+## Tecnologías utilizadas
+
+Para la elaboración de este proyecto se utilizó Python y Pandas para los procesos de extracción, transformación y carga de los datos, como así también para el análisis exploratorio de los datos. En el siguiente apartado se describen los resultados del análisis.
+
+Finalmente, para la construcción de un dashboard interactivo se utiliza Power BI.
+
+<p align="center">
+<img src="https://github.com/SebitaElGordito/PI_02_siniestros_viales/blob/main/Images/imagen_dashboard.jpeg?raw=true" alt="banner siniestros viales" width="1000" height="450">
 
 <br>
 
 ## ETL
 
-Se realizó la extracción, transformación y carga (ETL) de los tres conjuntos de datos entregados. Dos de los conjuntos de datos se encontraban anidados, es decir había columnas con diccionarios o listas de diccionarios, por lo que aplicaron distintas estrategias para transformar las claves de esos diccionarios en columnas. Luego se rellenaron algunos nulos de variables necesarias para el proyecto, se borraron columnas con muchos nulos o que no aportaban valor al proyecto, para optimizar el rendimiento de la API y teneniendo en cuenta las limitaciones de almacenamiento del deploy.
+Extracción de Datos
 
-Los detalles del ETL se puede ver en: 
-+ [ETL steam_games](https://github.com/SebitaElGordito/PI_01_steam/blob/main/ETL/ETL_steam_games.ipynb) 
-+ [ETL australian_users_items](https://github.com/SebitaElGordito/PI_01_steam/blob/main/ETL/ETL_users_items.ipynb)  
-+ [ETL australian_user_reviews](https://github.com/SebitaElGordito/PI_01_steam/blob/main/ETL/ETL_user_reviews.ipynb).
+En primer lugar, se realizó un proceso de extracción, transformación y carga de los datos (ETL), tanto de "HECHOS" como "VÍCTIMAS", donde se estandarizaron nombres de las variables, se analizaron nulos y duplicados de los registros, se eliminaron columnas redundantes o con muchos valores faltantes, entre otras tareas. Una vez finalizado este proceso para los dos conjuntos de datos de "Homicidios" se procedió a unir los dos conjuntos en uno solo denominado `df_homicidios`.
 
-<br>
-
-## Feature engineering
-
-Uno de los pedidos para este proyecto fue aplicar un análisis de sentimiento a los reviews de los usuarios. Para ello se creó una nueva columna llamada 'sentiment_analysis' que reemplaza a la columna que contiene los reviews donde clasifica los sentimientos de los comentarios con la siguiente escala:
-
-* 0 si es malo,
-* 1 si es neutral o está sin review
-* 2 si es positivo.
-
-<br>
-
-<p align="center">
-<img src="https://github.com/SebitaElGordito/PI_01_steam/blob/main/Images/sentiment_analysis.png?raw=true" alt="imagen de creación de columna sentiment analysis" width="750" height="500">
-</p>
-<p align="center">
-<i>creación de la columna sentiment analysis en jupiter notebook.</i>
-</p>
-
-<br>
-
-Para la creación de esta columna, se utilizó la librería nltk que es la abreviatura de Natural Language Toolkit, una biblioteca para Python que se utiliza para trabajar con datos de lenguaje humano y análisis de sentimiento. VADER es una herramienta de análisis de sentimientos basada en un léxico y reglas, especialmente calibrada para entender los sentimientos expresados en las redes sociales. Utiliza un conjunto de palabras etiquetadas según su orientación semántica como positivas o negativas y aplica una serie de reglas gramaticales y sintácticas para estimar la valencia sentimental de un texto.
-
-Por otra parte, y bajo el mismo criterio de optimizar los tiempos de respuesta de las consultas en la API y teniendo en cuenta las limitaciones de almacenamiento en el servicio de nube para deployar la API, se realizaron dataframes auxiliares para cada una de las funciones solicitadas. En el mismo sentido, se guardaron estos dataframes en formato *parquet* que permite una compresión y codificación eficiente de los datos.
+* Carga de Datos
+Los datos transformados y limpios se utilizaron para realizar el EDA pertinente, y el posterior análisis mediante un dashboard de power BI.
 
 <br>
 
 ## :bar_chart: EDA
 
-Se realizó el EDA a los tres conjuntos de datos sometidos a ETL con el objetivo de identificar las variables que se pueden utilizar en la creación del modelo de recmendación. Para ello se utilizó la librería Pandas para la manipulación de los datos y las librerías Matplotlib y Seaborn para la visualización.
+Se utilizaron herramientas como Python, Pandas y Matplotlib para explorar los datos, generando estadísticas descriptivas, gráficos de tendencias y correlaciones.
+
+Localización y Tiempo de los Siniestros: Se observó una mayor incidencia de siniestros en ciertas comunas y horarios, destacándose las primeras horas de la mañana y las avenidas principales.
+
+* Perfil de las Víctimas: La mayoría de las víctimas eran hombres jóvenes, sugiriendo la necesidad de campañas de concienciación dirigidas a este grupo.
+
+* Tipo de Vehículo Involucrado: Los automóviles y motocicletas estuvieron involucrados en la mayoría de los siniestros, lo que indica la necesidad de regulaciones específicas para estos vehículos.
+
+* Relación entre Condiciones del Siniestro y Fatalidades: Se detectó un aumento en la tasa de fatalidades en siniestros nocturnos y en condiciones de baja visibilidad.
 
 <br>
 
-<p align="center">
-<img src="https://github.com/SebitaElGordito/PI_01_steam/blob/main/Images/grafico_eda.png?raw=true" alt="imagen de gráfico en el EDA" width="800" height="400">
-</p>
-<p align="center">
-<i>Gráfico de barras cantidad de juegos lanzados por año.</i>
-</p>
+## KPI
+
+Se plantearon tres objetivos en relación a la disminución de la cantidad de víctimas fatales de los siniestros viales, desde los cuales se proponen tres indicadores de rendimiento clave o KPI.
+
+* *Reducir en un 10% la tasa de homicidios en siniestros viales de los últimos seis meses, en CABA, en comparación con la tasa de homicidios en siniestros viales del semestre anterior*
+
+    Las tasas de mortalidad relacionadas con siniestros viales suelen ser un indicador crítico de la seguridad vial en una región. Se define como **Tasa de homicidios en siniestros viales** al número de víctimas fatales en accidentes de tránsito por cada 100,000 habitantes en un área geográfica durante un período de tiempo específico, en este caso se toman 6 meses.
+
+    En este caso, para el año 2021, la *Tasa de homicidios en siniestros viales* fue de 1.77 lo que significa que, durante los primeros 6 meses del año 2021, hubo aproximadamente 1.77 homicidios en accidentes de tránsito por cada 100,000 habitantes. Ahora, el objetivo planteado es reducir esta tasa para el siguiente semestre de 2021 en un 10%, esto es **1.60**. Cuando se calcula el KPI para este período se obtiene que la *Tasa de homicidios en siniestros viales* fue de **1.35**, lo que significa que para el segundo semestre de 2021 se cumple con el objetivo propuesto.
+
+* *Reducir en un 7% la cantidad de accidentes mortales de motociclistas en el último año, en CABA, respecto al año anterior*
+
+    Como se vio en el análisis exploratorio, el 42% de las víctimas mortales se transportaban en moto al momento del hecho, por lo que se consideró importante proponer el monitoreo de la cantidad de accidentes mortales en este tipo de conductor. Para ello se define a la **Cantidad de accidentes mortales de motociclistas** como el número absoluto de accidentes fatales en los que estuvieron involucradas víctimas que viajaban en moto en un determinado periodo temporal.
+
+    Para este caso, se toma como año actual al año 2021 y como año anterior al año 2020. En primer lugar, se calculó la *Cantidad de accidentes mortales de motociclistas* para el año 2020, el cual resultó de -44.00, de esta manera el objetivo a cumplir es de **-40.92** (es decir, la reducción del 7% de la cantidad de accidentes para 2020). El calcular la *Cantidad de accidentes mortales de motociclistas* para el año 2021 resultó de **64.29** lo que significa que aumentó un 64% la cantidad de muertes de conductores de motociclistas respecto del 2021.
+
+* *Reducir en un 10% la tasa de homicidios de peaton respecto del año anterior.
+
+    Como se vio en el análisis exploratorio, el 35% de las víctimas mortales eran peatones, por lo que se consideró importante proponer el monitoreo de la cantidad de accidentes mortales en peatones. Para ello se define a la **Cantidad de accidentes mortales de peatones** como el número absoluto de accidentes fatales en los que estuvieron involucradas víctimas que se trasladaban a pie al momento del accidente.
+
+    Para este caso, se toma como año actual al año 2021 y como año anterior al año 2020. En primer lugar, se calculó la *Cantidad de accidentes mortales de peatones* para el año 2020, el cual resultó de (es decir, la reducción del 10% de la cantidad de accidentes para 2020). El calcular la *Cantidad de accidentes mortales de peatones* para el año 2021 resultó de **64.29** lo que significa que aumentó un 64% la cantidad de muertes de conductores de motociclistas respecto del 2021.
+
 
 <br>
 
-En particular para el modelo de recomendación, se terminó eligiendo construir un dataframe específico con el id del usuario que realizaron reviews y los nombres de los juegos a los cuales se le realizaron comentarios.
-
-El desarrollo de este análisis se encuentra en: 
-+ [EDA](https://github.com/SebitaElGordito/PI_01_steam/blob/main/EDA/EDA.ipynb)
-
-<br>
-
-## :robot: Modelo de recomendación
-
-Se creaó el modelo de recomendación, que generan una lista de 5 juegos ingresando el id_producto.
-
-El modelo tiene una relación ítem-ítem. Se toma un juego y en base a que tan similar es ese juego con el resto de los juegos se recomiendan similares. Para ello, se aplicaron filtro previos a aplicar la **similitud del coseno**, tales como que los juegos potencialmente recomendados debían compartir al menos una categoría de genero con el item_id ingresado para la consulta. Esto generaba una lista de 10 productos recomendados, luego de aplicar el filtro de género y la similitud del coseno, lista de la cual se seleccionaban los 5 juegos con mayor porcentaje de recomendación por el usuario.
-
-<br>
-
-<p align="center">
-<img src="https://github.com/SebitaElGordito/PI_01_steam/blob/main/Images/modelo_recomendacion.png?raw=true" alt="imagen de función modelo de recomendacón" width="700" height="380">
-</p>
-<p align="center">
-<i>Función de modelo de recomendación.</i>
-</p>
-
-<br>
-
-La **similitud del coseno** que es una medida comúnmente utilizada para evaluar la similitud entre dos vectores en un espacio multidimensional. En el contexto de sistemas de recomendación y análisis de datos, la similitud del coseno se utiliza para determinar cuán similares son dos conjuntos de datos o elementos, y se calcula utilizando el coseno del ángulo entre los vectores que representan esos datos o elementos.
-
-<br>
-
-## Desarrollo de API
-
-Para el desarrolo de la API se decidió utilizar el framework FastAPI, creando las siguientes funciones:
-
-* **developer**: Esta función recibe como parámetro 'developer', que es la empresa desarrolladora del juego, y devuelve la cantidad de items que desarrolla dicha empresa y el porcentaje de contenido Free por año por sobre el total que desarrolla.
-
-* **user_data**: Esta función tiene por parámentro 'user_id' y devulve la cantidad de dinero gastado por el usuario, el porcentaje de recomendaciones que realizó sobre la cantidad de reviews que se analizan y la cantidad de items que posee en su biblioteca de juegos.
-
-* **user_for_genre**: Esta función recibe como parámetro el género de un videojuego y devuelve el usuario con más horas de juego en el género ingresado, y una lista de acumulación de horas jugadas por año.
-
-* **best_developer_year**: En esta función se ingresa un año como parámetro y devuelve el top 3 de desarrolladoras con mas recomendaciones positivas por usuarios, para ese año dado.
-
-* **developer_review_analysis**: Esta función recibe como parámetro una desarrolladora y devuelve un diccionario con la cantidad de reviews positivas y reviews negativas hechas por los usuarios, para esa desarrolladora.
-
-* **recomendacion_juego**: Esta función recibe como parámetro el id de un juego y devuelve una lista con 5 juegos recomendados similares al ingresado.
-
-<br>
-
-<p align="center">
-<img src="https://github.com/SebitaElGordito/PI_01_steam/blob/main/Images/fastapi.png?raw=true" alt="imagen de funciones en fastapi local" width="700" height="380">
-</p>
-<p align="center">
-<i>Funciones en fastAPI local.</i>
-</p>
-
-<br>
-
-El desarrollo de las funciones de consultas generales se puede ver en: [main.py](https://github.com/SebitaElGordito/PI_01_steam/blob/main/main.py).
-
-<br>
-
-## Deployment
-
-Para el deploy de la API se decidió crear un nuevo repositorio [repo_render](https://github.com/SebitaElGordito/PI_render). que contara solo con las unciones a consumir en la API, liberandonos de las carpetas o jupiters notebooks innecesarios. Se seleccionó la plataforma Render que es una nube unificada para crear y ejecutar aplicaciones y sitios web, permitiendo el despliegue automático desde GitHub. Se utilizó un Dockerfile cuya imagen es Python 3.10. Esto se hace porque Render usa por defecto Python 3.7, lo que no es compatible con las versiones de las librerías trabajadas en este proyecto, por tal motivo, se optó por deployar el proyecto dentro de este contenedor. Se puede ver el detalle del documento [Dockerfile](https://github.com/SebitaElGordito/PI_render/blob/main/Dockerfile).
-- Se generó un servicio nuevo  en `render.com`, conectado al presente repositorio y utilizando Docker como Runtime.
-- Finalmente, el servicio queda corriendo en [https://pi-render-tt44.onrender.com/](https://pi-render-tt44.onrender.com/).
-
-
-
-## Video
-
-En este [video](https://www.youtube.com/watch?v=MWNqfuX1hUQ) se explica brevemente este proyecto mostrando el funcionamiento de la API en render y en fastApi local.
+## Conclusiones
+La aplicación de técnicas de ciencia de datos ha permitido identificar áreas clave para mejorar la seguridad vial en Buenos Aires. La integración del proceso ETL y EDA ha demostrado ser fundamental para una comprensión profunda de los siniestros viales. Las conclusiones obtenidas son de gran valor para informar políticas públicas y estrategias orientadas a reducir la incidencia y gravedad de los siniestros viales en la ciudad.
 
 <br>
 
