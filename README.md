@@ -71,7 +71,7 @@ Finalmente, para la construcción de un dashboard interactivo se utiliza Power B
 <br>
 
 <p align="center">
-<img src="https://github.com/SebitaElGordito/PI_02_siniestros_viales/blob/main/Images/Dashboard.jpeg?raw=true" alt="foto dashborad en power bi" width="800" height="400">
+<img src="https://github.com/SebitaElGordito/PI_02_siniestros_viales/blob/main/Images/Dashboard.png?raw=true" alt="foto dashborad en power bi" width="800" height="400">
 
 <br>
 
@@ -95,7 +95,7 @@ Localización y Tiempo de los Siniestros: Se observó una mayor incidencia de si
 <br>
 
 <p align="center">
-<img src="https://github.com/SebitaElGordito/PI_02_siniestros_viales/blob/main/Images/EDA_1.jpeg?raw=true" alt="foto EDA en python" width="600" height="400">
+<img src="https://github.com/SebitaElGordito/PI_02_siniestros_viales/blob/main/Images/EDA_1.png?raw=true" alt="foto EDA en python" width="600" height="400">
 
 <br>
 
@@ -108,7 +108,7 @@ Localización y Tiempo de los Siniestros: Se observó una mayor incidencia de si
 <br>
 
 <p align="center">
-<img src="https://github.com/SebitaElGordito/PI_02_siniestros_viales/blob/main/Images/EDA_2.jpeg?raw=true" alt="foto EDA en python" width="600" height="400">
+<img src="https://github.com/SebitaElGordito/PI_02_siniestros_viales/blob/main/Images/EDA_2.png?raw=true" alt="foto EDA en python" width="600" height="400">
 
 <br>
 
@@ -133,7 +133,7 @@ Se plantearon tres objetivos en relación a la disminución de la cantidad de v�
 <br>
 
 <p align="center">
-<img src="https://github.com/SebitaElGordito/PI_02_siniestros_viales/blob/main/Images/KPI.jpeg?raw=true" alt="foto KPI´s en power bi" width="800" height="400">
+<img src="https://github.com/SebitaElGordito/PI_02_siniestros_viales/blob/main/Images/KPI.png?raw=true" alt="foto KPI´s en power bi" width="800" height="400">
 
 <br>
 
