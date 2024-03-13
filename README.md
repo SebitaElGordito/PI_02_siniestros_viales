@@ -6,12 +6,12 @@
 
 <br>
 
-# :construction: Proyecto Integrador 02 siniestros viales :construction:
+# :construction: PI 02 siniestros viales :construction:
 
 <br>
 
 <p align="center">
-<img src="https://github.com/SebitaElGordito/PI_02_siniestros_viales/blob/main/Images/imagen_dashboard.jpeg?raw=true" alt="banner siniestros viales" width="900" height="450">
+<img src="https://github.com/SebitaElGordito/PI_02_siniestros_viales/blob/main/Images/imagen_dashboard.jpeg?raw=true" alt="banner siniestros viales" width="1000" height="450">
 
 <br>
 
